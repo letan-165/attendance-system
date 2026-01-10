@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @Builder
 public class Support {
     @Id
-     String id;
-     String attendanceId;
-     LocalDateTime time;
-     String reason;
-     SupportStatus status;
+    String id;
+    String attendanceId;
+    LocalDateTime time;
+    String reason;
+    SupportStatus status;
 }

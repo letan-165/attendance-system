@@ -41,6 +41,8 @@ public class GlobalExceptionHandling {
                     case "ActionLogType" -> toResponseEntity(ErrorCode.ACTION_LOG_INVALID);
                     case "AttendanceStatus" -> toResponseEntity(ErrorCode.ATTENDANCE_INVALID);
                     case "SupportStatus" -> toResponseEntity(ErrorCode.SUPPORT_INVALID);
+                    case "UserStatus" -> toResponseEntity(ErrorCode.USER_STATUS_INVALID);
+                    case "UserRole" -> toResponseEntity(ErrorCode.USER_ROLE_INVALID);
                     default -> toResponseEntity(ErrorCode.ENUM_INVALID);
                 };
             }

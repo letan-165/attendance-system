@@ -1,5 +1,7 @@
 package cloud.project.attendance.entity;
 
+import cloud.project.attendance.common.enums.UserRole;
+import cloud.project.attendance.common.enums.UserStatus;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,9 +13,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 public class User {
     @Id
-     String id;
-     String username;
-     String password;
-     String fullName;
-     String email;
+    String id;
+    String username;
+    String password;
+    String fullName;
+    String email;
+    UserStatus status;
+    UserRole role;
 }

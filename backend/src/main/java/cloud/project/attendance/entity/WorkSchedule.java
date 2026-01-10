@@ -1,29 +1,26 @@
 package cloud.project.attendance.entity;
 
-import cloud.project.attendance.common.enums.AttendanceStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalTime;
 
 @Document
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Attendance {
+public class WorkSchedule {
     @Id
     String id;
-    String userId;
-
-    LocalDate workDate;
-    LocalDateTime checkInTime;
-    LocalDateTime checkOutTime;
-    List<AttendanceStatus> status;
+    LocalTime startTime;
+    LocalTime endTime;
 
     @CreatedDate
     LocalDateTime createdAt;

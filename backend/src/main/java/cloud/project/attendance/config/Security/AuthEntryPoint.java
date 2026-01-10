@@ -1,7 +1,7 @@
 package cloud.project.attendance.config.Security;
 
-import com.app.mevocab.common.ApiResponse;
-import com.app.mevocab.common.exception.ErrorCode;
+import cloud.project.attendance.common.ApiResponse;
+import cloud.project.attendance.common.exception.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
