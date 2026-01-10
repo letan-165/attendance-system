@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 @AllArgsConstructor
 public enum ErrorCode {
 
+    SUPPORT_NO_PENDING(3007,"Support had handle", HttpStatus.BAD_REQUEST),
     ATTENDANCE_NO_EXISTS(3006,"Attendance not exists", HttpStatus.BAD_REQUEST),
     NOT_CHECKED_IN(3005,"User have not check-in", HttpStatus.BAD_REQUEST),
     ALREADY_CHECKED_OUT(3004,"Check-out existed", HttpStatus.BAD_REQUEST),
