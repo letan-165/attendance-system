@@ -1,6 +1,6 @@
 package cloud.project.attendance.dto.response;
 
-import com.app.mevocab.common.enums.UserRole;
+import cloud.project.attendance.common.enums.UserRole;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

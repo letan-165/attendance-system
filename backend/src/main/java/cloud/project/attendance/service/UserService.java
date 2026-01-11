@@ -1,10 +1,8 @@
 package cloud.project.attendance.service;
 
-import cloud.project.attendance.common.enums.UserRole;
 import cloud.project.attendance.common.enums.UserStatus;
 import cloud.project.attendance.common.exception.AppException;
 import cloud.project.attendance.common.exception.ErrorCode;
-import cloud.project.attendance.dto.request.UserSignUpRequest;
 import cloud.project.attendance.dto.response.UserResponse;
 import cloud.project.attendance.entity.User;
 import cloud.project.attendance.mapper.UserMapper;
@@ -30,27 +28,6 @@ public class UserService {
     public List<UserResponse> findAll(){
         return userRepository.findAll().stream()
                 .map(userMapper::toUserResponse)
-                .toList();
-    }
-
-    public List<UserResponse> createUsers(List<UserSignUpRequest> requests) {
-        List<User> users = requests.stream().map(req -> {
-            if (userRepository.existsByUsername(req.getUsername())) {
-                throw new AppException(ErrorCode.USER_EXISTS);
-            }
-
-            return User.builder()
-                    .username(req.getUsername())
-                    .password(passwordEncoder.encode(req.getPassword()))
-                    .fullName(req.getName())
-                    .email(req.getEmail())
-                    .status(UserStatus.ACTIVE)
-                    .role(UserRole.STAFF)
-                    .build();
-        }).toList();
-
-        return userRepository.saveAll(users)
-                .stream().map(userMapper::toUserResponse)
                 .toList();
     }
 

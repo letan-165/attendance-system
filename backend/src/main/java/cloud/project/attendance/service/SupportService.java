@@ -24,7 +24,7 @@ public class SupportService {
     SupportRepository supportRepository;
     AttendanceRepository attendanceRepository;
 
-    public Support createRequest(String attendanceId, String reason) {
+    public Support submitSupport(String attendanceId, String reason) {
         Attendance attendance = attendanceRepository.findById(attendanceId)
                 .orElseThrow(() -> new AppException(ErrorCode.ATTENDANCE_NO_EXISTS));
         return supportRepository.save(

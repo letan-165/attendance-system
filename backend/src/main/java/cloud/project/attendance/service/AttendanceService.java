@@ -22,7 +22,6 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
 public class AttendanceService {
-
     AttendanceRepository attendanceRepository;
     WorkScheduleRepository workScheduleRepository;
 
@@ -35,7 +34,6 @@ public class AttendanceService {
     public Attendance checkIn(String userId) {
         LocalDate today = LocalDate.now();
         WorkSchedule schedule = getLatestSchedule();
-
         Attendance attendance = attendanceRepository
                 .findByUserIdAndWorkDate(userId, today)
                 .orElse(
@@ -44,10 +42,8 @@ public class AttendanceService {
                                 .workDate(today)
                                 .build()
                 );
-
-        if (attendance.getCheckInTime() != null) {
+        if (attendance.getCheckInTime() != null)
             throw new AppException(ErrorCode.ALREADY_CHECKED_IN);
-        }
 
         LocalDateTime now = LocalDateTime.now();
         attendance.setCheckInTime(now);
@@ -68,16 +64,14 @@ public class AttendanceService {
                 .findByUserIdAndWorkDate(userId, LocalDate.now())
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_CHECKED_IN));
 
-        if (attendance.getCheckOutTime() != null) {
+        if (attendance.getCheckOutTime() != null)
             throw new AppException(ErrorCode.ALREADY_CHECKED_OUT);
-        }
 
         LocalDateTime now = LocalDateTime.now();
         attendance.setCheckOutTime(now);
 
-        if (now.toLocalTime().isBefore(schedule.getEndTime())) {
+        if (now.toLocalTime().isBefore(schedule.getEndTime()))
             attendance.getStatus().add(AttendanceStatus.EARLY_LEAVE);
-        }
 
         return attendanceRepository.save(attendance);
     }

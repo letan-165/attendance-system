@@ -21,13 +21,13 @@ public class SupportController {
     SupportService supportService;
 
     @PostMapping
-    ApiResponse<Support> createRequest(
+    ApiResponse<Support> submitSupport(
             @RequestParam String attendanceId,
             @RequestParam String reason
     ) {
         return ApiResponse.<Support>builder()
                 .message("Gửi yêu cầu điều chỉnh chấm công")
-                .result(supportService.createRequest(attendanceId, reason))
+                .result(supportService.submitSupport(attendanceId, reason))
                 .build();
     }
 
