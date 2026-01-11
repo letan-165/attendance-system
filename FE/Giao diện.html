@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Hệ thống chấm công</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial;
+    background:#f4f7fb;
+}
+
+#login{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.login-box{
+    width:360px;
+    background:#fff;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+    text-align:center;
+}
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #cbd5f5;
+}
+.login-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    cursor:pointer;
+}
+
+#app{display:none}
+.header{
+    height:70px;
+    background:linear-gradient(135deg,#1e3a8a,#2563eb);
+    color:white;
+    padding:0 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.layout{
+    display:flex;
+    min-height:calc(100vh - 70px);
+}
+.sidebar{
+    width:260px;
+    background:#0f172a;
+    color:#cbd5f5;
+    padding:20px;
+}
+.sidebar h4{
+    margin:18px 0 10px;
+    font-size:13px;
+    text-transform:uppercase;
+    opacity:.7;
+}
+.sidebar button{
+    width:100%;
+    padding:12px;
+    margin-bottom:6px;
+    background:none;
+    border:none;
+    color:#cbd5f5;
+    text-align:left;
+    border-radius:8px;
+    cursor:pointer;
+}
+.sidebar button:hover{
+    background:#1e293b;
+    color:white;
+}
+
+.main{
+    flex:1;
+    padding:30px;
+}
+.actions{
+    display:flex;
+    gap:15px;
+}
+.actions button{
+    padding:14px 22px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+}
+
+.cards{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.card{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.content{
+    margin-top:25px;
+    background:white;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    overflow:hidden;
+}
+.content-header{
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    padding:18px 22px;
+    font-weight:600;
+}
+.content-body{
+    padding:22px;
+}
+
+.primary-btn{
+    padding:10px 22px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+.primary-btn:hover{background:#1e40af}
+
+textarea{
+    width:100%;
+    height:90px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #cbd5f5;
+    font-family:inherit;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+th,td{
+    padding:10px;
+    border:1px solid #e5e7eb;
+    text-align:center;
+}
+th{
+    background:#2563eb;
+    color:white;
+}
+
+.ok{color:green;font-weight:600}
+.pending{color:orange;font-weight:600}
+</style>
+</head>
+
+<body>
+
+<div id="login">
+    <div class="login-box">
+        <h2>Đăng nhập</h2>
+        <input id="username" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button onclick="doLogin()">Đăng nhập</button>
+    </div>
+</div>
+
+<div id="app">
+    <div class="header">
+        <h3>Hệ thống chấm công</h3>
+        <div id="userInfo"></div>
+    </div>
+
+    <div class="layout">
+        <div class="sidebar">
+            <h4>Nhân viên</h4>
+            <button onclick="dashboard()">🏠 Dashboard</button>
+            <button onclick="history()">📅 Lịch sử chấm công</button>
+            <button onclick="request()">✏️ Gửi yêu cầu</button>
+            <button onclick="requestStatus()">📌 Trạng thái yêu cầu</button>
+
+            <h4>Hệ thống</h4>
+            <button onclick="notify()">🔔 Thông báo</button>
+            <button onclick="log()">📜 Nhật ký</button>
+
+            <h4>Quản lý (UI)</h4>
+            <button onclick="manageTime()">⏱ Quản lý thời gian</button>
+            <button onclick="manageUser()">👥 Quản lý nhân viên</button>
+            <button onclick="manageResult()">📊 Kết quả chấm công</button>
+        </div>
+
+        <div class="main">
+            <div class="actions">
+                <button onclick="checkIn()">✔ Check-in</button>
+                <button onclick="checkOut()">⏱ Check-out</button>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Hôm nay</h3>
+                    <p id="ci">Check-in: --</p>
+                    <p id="co">Check-out: --</p>
+                </div>
+                <div class="card">
+                    <h3>Trạng thái</h3>
+                    <p class="ok">Hoạt động</p>
+                </div>
+                <div class="card">
+                    <h3>Server</h3>
+                    <p id="sv">--</p>
+                </div>
+            </div>
+
+            <div class="content" id="content">
+                <div class="content-header">Dashboard</div>
+                <div class="content-body">
+                    <i>Chọn chức năng bên trái</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let logs=[], requests=[], notifications=[], historyData=[];
+let checkInTime="--", checkOutTime="--";
+
+function now(){return new Date().toLocaleTimeString();}
+function today(){return new Date().toLocaleDateString();}
+function server(){
+    let s=["backend-01","backend-02","backend-03"];
+    return s[Math.floor(Math.random()*s.length)];
+}
+
+function doLogin(){
+    const u=document.getElementById("username").value.trim();
+    if(!u){alert("Nhập username");return;}
+    login.style.display="none";
+    app.style.display="block";
+    userInfo.innerText="👤 "+u;
+    logs.push(now()+" - Đăng nhập");
+    dashboard();
+}
+
+function checkIn(){
+    checkInTime=now();
+    ci.innerText="Check-in: "+checkInTime;
+    sv.innerText=server();
+    logs.push(now()+" - Check-in");
+    notifications.push("Check-in thành công");
+}
+function checkOut(){
+    checkOutTime=now();
+    co.innerText="Check-out: "+checkOutTime;
+    historyData.push({date:today(),in:checkInTime,out:checkOutTime});
+    logs.push(now()+" - Check-out");
+    notifications.push("Check-out thành công");
+}
+
+function dashboard(){
+    content.innerHTML=`
+    <div class="content-header">Dashboard</div>
+    <div class="content-body">
+        <p><b>Check-in:</b> ${checkInTime}</p>
+        <p><b>Check-out:</b> ${checkOutTime}</p>
+        <p><b>Số yêu cầu:</b> ${requests.length}</p>
+    </div>`;
+}
+
+function history(){
+    let rows=historyData.map(h=>`
+        <tr><td>${h.date}</td><td>${h.in}</td><td>${h.out}</td></tr>
+    `).join("");
+    content.innerHTML=`
+    <div class="content-header">Lịch sử chấm công</div>
+    <div class="content-body">
+        <table>
+            <tr><th>Ngày</th><th>Check-in</th><th>Check-out</th></tr>
+            ${rows||"<tr><td colspan='3'>Chưa có dữ liệu</td></tr>"}
+        </table>
+    </div>`;
+}
+
+function request(){
+    content.innerHTML=`
+    <div class="content-header">✏️ Gửi yêu cầu điều chỉnh</div>
+    <div class="content-body">
+        <textarea id="reason" placeholder="Nhập lý do điều chỉnh..."></textarea><br><br>
+        <button class="primary-btn" onclick="sendRequest()">Gửi yêu cầu</button>
+    </div>`;
+}
+
+function sendRequest(){
+    const r=document.getElementById("reason").value.trim();
+    if(!r){alert("Nhập lý do");return;}
+    requests.push({time:now(),reason:r,status:"Đang xử lý"});
+    logs.push(now()+" - Gửi yêu cầu");
+    notifications.push("Đã gửi yêu cầu điều chỉnh");
+    alert("Gửi thành công");
+    requestStatus();
+}
+
+function requestStatus(){
+    content.innerHTML=`
+    <div class="content-header">📌 Trạng thái yêu cầu</div>
+    <div class="content-body">
+        <ul>
+        ${requests.map(r=>`
+            <li>${r.time} - ${r.reason} (<span class="pending">${r.status}</span>)</li>
+        `).join("")||"<li>Chưa có yêu cầu</li>"}
+        </ul>
+    </div>`;
+}
+
+function notify(){
+    content.innerHTML=`
+    <div class="content-header">🔔 Thông báo</div>
+    <div class="content-body">
+        <ul>${notifications.map(n=>"<li>"+n+"</li>").join("")||"<li>Không có thông báo</li>"}</ul>
+    </div>`;
+}
+
+function log(){
+    content.innerHTML=`
+    <div class="content-header">📜 Nhật ký</div>
+    <div class="content-body">
+        <ul>${logs.map(l=>"<li>"+l+"</li>").join("")}</ul>
+    </div>`;
+}
+
+function manageTime(){
+    content.innerHTML="<div class='content-header'>Quản lý thời gian</div><div class='content-body'>UI demo</div>";
+}
+function manageUser(){
+    content.innerHTML="<div class='content-header'>Quản lý nhân viên</div><div class='content-body'>UI demo</div>";
+}
+function manageResult(){
+    content.innerHTML="<div class='content-header'>Kết quả chấm công</div><div class='content-body'>UI demo</div>";
+}
+</script>
+
+</body>
+</html>
