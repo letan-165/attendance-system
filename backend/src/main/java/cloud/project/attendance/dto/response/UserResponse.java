@@ -1,6 +1,7 @@
 package cloud.project.attendance.dto.response;
 
 import cloud.project.attendance.common.enums.UserRole;
+import cloud.project.attendance.common.enums.UserStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,9 +11,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserResponse {
-    String userID;
+    String id;
     String username;
-    String name;
+    String fullName;
     String email;
+    UserStatus status;
     UserRole role;
 }

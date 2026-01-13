@@ -28,7 +28,7 @@ public class AttendanceService {
     WorkSchedule getLatestSchedule() {
         return workScheduleRepository
                 .findFirstByOrderByCreatedAtDesc()
-                .orElseThrow(() -> new AppException(ErrorCode.OTHER_ERROL));
+                .orElseThrow(() -> new AppException(ErrorCode.WORK_SCHEDULE_NO_EXISTS));
     }
 
     public Attendance checkIn(String userId) {

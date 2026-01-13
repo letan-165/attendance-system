@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -25,7 +26,9 @@ public class Attendance {
     LocalDate workDate;
     LocalDateTime checkInTime;
     LocalDateTime checkOutTime;
-    List<AttendanceStatus> status;
+
+    @Builder.Default
+    List<AttendanceStatus> status = new ArrayList<>();
 
     @CreatedDate
     LocalDateTime createdAt;
