@@ -11,7 +11,6 @@ body{
     font-family:"Segoe UI",Arial;
     background:#f4f7fb;
 }
-
 #login{
     height:100vh;
     display:flex;
@@ -84,7 +83,6 @@ body{
     background:#1e293b;
     color:white;
 }
-
 .main{
     flex:1;
     padding:30px;
@@ -101,7 +99,6 @@ body{
     cursor:pointer;
     background:linear-gradient(135deg,#2563eb,#1d4ed8);
 }
-
 .cards{
     margin-top:25px;
     display:grid;
@@ -114,7 +111,6 @@ body{
     border-radius:16px;
     box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
-
 .content{
     margin-top:25px;
     background:white;
@@ -131,7 +127,6 @@ body{
 .content-body{
     padding:22px;
 }
-
 .primary-btn{
     padding:10px 22px;
     border:none;
@@ -142,16 +137,13 @@ body{
     cursor:pointer;
 }
 .primary-btn:hover{background:#1e40af}
-
 textarea{
     width:100%;
     height:90px;
     padding:12px;
     border-radius:10px;
     border:1px solid #cbd5f5;
-    font-family:inherit;
 }
-
 table{
     width:100%;
     border-collapse:collapse;
@@ -165,7 +157,6 @@ th{
     background:#2563eb;
     color:white;
 }
-
 .ok{color:green;font-weight:600}
 .pending{color:orange;font-weight:600}
 </style>
@@ -198,7 +189,6 @@ th{
 
             <h4>Hệ thống</h4>
             <button onclick="notify()">🔔 Thông báo</button>
-            <button onclick="log()">📜 Nhật ký</button>
 
             <h4>Quản lý (UI)</h4>
             <button onclick="manageTime()">⏱ Quản lý thời gian</button>
@@ -230,9 +220,7 @@ th{
 
             <div class="content" id="content">
                 <div class="content-header">Dashboard</div>
-                <div class="content-body">
-                    <i>Chọn chức năng bên trái</i>
-                </div>
+                <div class="content-body"><i>Chọn chức năng bên trái</i></div>
             </div>
         </div>
     </div>
@@ -241,6 +229,8 @@ th{
 <script>
 let logs=[], requests=[], notifications=[], historyData=[];
 let checkInTime="--", checkOutTime="--";
+let currentPage = 1;
+const rowsPerPage = 10; 
 
 function now(){return new Date().toLocaleTimeString();}
 function today(){return new Date().toLocaleDateString();}
@@ -250,7 +240,7 @@ function server(){
 }
 
 function doLogin(){
-    const u=document.getElementById("username").value.trim();
+    const u=username.value.trim();
     if(!u){alert("Nhập username");return;}
     login.style.display="none";
     app.style.display="block";
@@ -284,76 +274,86 @@ function dashboard(){
     </div>`;
 }
 
-function history(){
-    let rows=historyData.map(h=>`
-        <tr><td>${h.date}</td><td>${h.in}</td><td>${h.out}</td></tr>
+function history(page = 1){
+    currentPage = page;
+
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const pageData = historyData.slice(start, end);
+
+    let rows = pageData.map(h => `
+        <tr>
+            <td>${h.date}</td>
+            <td>${h.in}</td>
+            <td>${h.out}</td>
+        </tr>
     `).join("");
-    content.innerHTML=`
-    <div class="content-header">Lịch sử chấm công</div>
-    <div class="content-body">
-        <table>
-            <tr><th>Ngày</th><th>Check-in</th><th>Check-out</th></tr>
-            ${rows||"<tr><td colspan='3'>Chưa có dữ liệu</td></tr>"}
-        </table>
-    </div>`;
+
+    if(!rows){
+        rows = `<tr><td colspan="3">Chưa có dữ liệu</td></tr>`;
+    }
+
+    const totalPages = Math.ceil(historyData.length / rowsPerPage);
+
+    let pagination = "";
+    for(let i=1;i<=totalPages;i++){
+        pagination += `<button onclick="history(${i})"
+            style="margin:5px;padding:6px 12px;
+            ${i===currentPage?'background:#2563eb;color:white':''}">
+            ${i}
+        </button>`;
+    }
+
+    content.innerHTML = `
+        <div class="content-header">Lịch sử chấm công</div>
+        <div class="content-body">
+            <table>
+                <tr>
+                    <th>Ngày</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                </tr>
+                ${rows}
+            </table>
+            <div style="text-align:center;margin-top:15px">
+                ${pagination}
+            </div>
+        </div>
+    `;
 }
 
 function request(){
     content.innerHTML=`
-    <div class="content-header">✏️ Gửi yêu cầu điều chỉnh</div>
+    <div class="content-header">✏️ Gửi yêu cầu</div>
     <div class="content-body">
-        <textarea id="reason" placeholder="Nhập lý do điều chỉnh..."></textarea><br><br>
-        <button class="primary-btn" onclick="sendRequest()">Gửi yêu cầu</button>
+        <textarea id="reason"></textarea><br><br>
+        <button class="primary-btn" onclick="sendRequest()">Gửi</button>
     </div>`;
 }
-
 function sendRequest(){
-    const r=document.getElementById("reason").value.trim();
-    if(!r){alert("Nhập lý do");return;}
-    requests.push({time:now(),reason:r,status:"Đang xử lý"});
+    if(!reason.value.trim())return alert("Nhập lý do");
+    requests.push({time:now(),reason:reason.value,status:"Đang xử lý"});
     logs.push(now()+" - Gửi yêu cầu");
-    notifications.push("Đã gửi yêu cầu điều chỉnh");
-    alert("Gửi thành công");
+    notifications.push("Đã gửi yêu cầu");
     requestStatus();
 }
-
 function requestStatus(){
     content.innerHTML=`
     <div class="content-header">📌 Trạng thái yêu cầu</div>
     <div class="content-body">
-        <ul>
-        ${requests.map(r=>`
-            <li>${r.time} - ${r.reason} (<span class="pending">${r.status}</span>)</li>
-        `).join("")||"<li>Chưa có yêu cầu</li>"}
-        </ul>
+        <ul>${requests.map(r=>`<li>${r.time} - ${r.reason} (<span class="pending">${r.status}</span>)</li>`).join("")||"<li>Chưa có</li>"}</ul>
     </div>`;
 }
-
 function notify(){
     content.innerHTML=`
     <div class="content-header">🔔 Thông báo</div>
     <div class="content-body">
-        <ul>${notifications.map(n=>"<li>"+n+"</li>").join("")||"<li>Không có thông báo</li>"}</ul>
+        <ul>${notifications.map(n=>"<li>"+n+"</li>").join("")||"<li>Không có</li>"}</ul>
     </div>`;
 }
-
-function log(){
-    content.innerHTML=`
-    <div class="content-header">📜 Nhật ký</div>
-    <div class="content-body">
-        <ul>${logs.map(l=>"<li>"+l+"</li>").join("")}</ul>
-    </div>`;
-}
-
-function manageTime(){
-    content.innerHTML="<div class='content-header'>Quản lý thời gian</div><div class='content-body'>UI demo</div>";
-}
-function manageUser(){
-    content.innerHTML="<div class='content-header'>Quản lý nhân viên</div><div class='content-body'>UI demo</div>";
-}
-function manageResult(){
-    content.innerHTML="<div class='content-header'>Kết quả chấm công</div><div class='content-body'>UI demo</div>";
-}
+function manageTime(){content.innerHTML="<div class='content-header'>Quản lý thời gian</div><div class='content-body'>UI demo</div>";}
+function manageUser(){content.innerHTML="<div class='content-header'>Quản lý nhân viên</div><div class='content-body'>UI demo</div>";}
+function manageResult(){content.innerHTML="<div class='content-header'>Kết quả chấm công</div><div class='content-body'>UI demo</div>";}
 </script>
 
 </body>
