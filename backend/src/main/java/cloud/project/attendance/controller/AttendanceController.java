@@ -3,6 +3,7 @@ package cloud.project.attendance.controller;
 import cloud.project.attendance.common.ApiResponse;
 import cloud.project.attendance.entity.Attendance;
 import cloud.project.attendance.service.AttendanceService;
+import cloud.project.attendance.service.AuthService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,36 +18,43 @@ import java.util.List;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AttendanceController {
-
     AttendanceService attendanceService;
+    AuthService authService;
 
-    @PostMapping("/check-in/{userId}")
-    ApiResponse<Attendance> checkIn(@PathVariable String userId) {
+    @PostMapping("/check-in")
+    ApiResponse<Attendance> checkIn() {
+        String userId = authService.getUserIdFromToken();
         return ApiResponse.<Attendance>builder()
                 .message("Check-in thành công")
                 .result(attendanceService.checkIn(userId))
                 .build();
     }
 
-    @PostMapping("/check-out/{userId}")
-    ApiResponse<Attendance> checkOut(@PathVariable String userId) {
+
+    @PostMapping("/check-out")
+    ApiResponse<Attendance> checkOut() {
+        String userId = authService.getUserIdFromToken();
         return ApiResponse.<Attendance>builder()
                 .message("Check-out thành công")
                 .result(attendanceService.checkOut(userId))
                 .build();
     }
 
-    @GetMapping("/today/{userId}")
-    ApiResponse<Attendance> getToday(@PathVariable String userId) {
+
+    @GetMapping("/today")
+    ApiResponse<Attendance> getToday() {
+        String userId = authService.getUserIdFromToken();
         return ApiResponse.<Attendance>builder()
                 .result(attendanceService.getToday(userId))
                 .build();
     }
 
-    @GetMapping("/history/{userId}")
-    ApiResponse<List<Attendance>> history(@PathVariable String userId) {
+    @GetMapping("/history")
+    ApiResponse<List<Attendance>> history() {
+        String userId = authService.getUserIdFromToken();
         return ApiResponse.<List<Attendance>>builder()
                 .result(attendanceService.getHistory(userId))
                 .build();
     }
+
 }

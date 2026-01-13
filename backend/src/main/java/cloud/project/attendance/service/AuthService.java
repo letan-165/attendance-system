@@ -19,6 +19,9 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -62,11 +65,21 @@ public class AuthService {
                 .build();
     }
 
+    public String getUserIdFromToken() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth == null || auth instanceof AnonymousAuthenticationToken)
+            throw new AppException(ErrorCode.TOKEN_INVALID);
+
+
+        return auth.getName();
+    }
+
     String generate(User user) throws JOSEException {
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
                 .jwtID(UUID.randomUUID().toString())
                 .issuer("ATTENDANCE")
-                .subject(user.getFullName())
+                .subject(user.getId())
                 .issueTime(Date.from(Instant.now()))
                 .expirationTime(Date.from(Instant.now().plus(expiryTime,ChronoUnit.SECONDS)))
                 .claim("scope", user.getRole())
