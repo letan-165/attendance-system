@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý - Hệ thống chấm công</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+    <h2>Hệ thống quản trị (Admin)</h2>
+    <div class="user">Admin: Hoàng</div>
+</div>
+<div class="layout">
+    <div class="sidebar">
+        <h4>QUẢN LÝ (UI)</h4>
+        <a href="admin.html" class="active">Xử lý yêu cầu</a>
+        <a href="admin_time.html">Quản lý thời gian</a>
+        <a href="admin_employee.html">Quản lý nhân viên</a>
+        <a href="admin_report.html">Kết quả chấm công</a>
+    </div>
+    <div class="main">
+        <div class="cards">
+            <div class="card">
+                <h3>Yêu cầu chờ</h3>
+                <h1 style="color: #2563eb;">05</h1>
+            </div>
+            <div class="card">
+                <h3>NV đang làm</h3>
+                <h1 style="color: green;">12/15</h1>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content-header">Danh sách yêu cầu cần xử lý</div>
+            <table class="history-table" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f8fafc;">
+                        <th>Nhân viên</th>
+                        <th>Loại</th>
+                        <th>Ngày gửi</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                    <tr>
+                        <td>Nguyễn Văn Tuấn</td>
+                        <td>Quên check-out</td>
+                        <td>13/01/2026</td>
+                        <td>
+                            <button style="color: green; border:none; cursor:pointer;">Duyệt</button> | 
+                            <button style="color: red; border:none; cursor:pointer;">Từ chối</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

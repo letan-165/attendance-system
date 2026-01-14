@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý nhân viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="header">
+    <h2>Hệ thống chấm công</h2>
+    <div class="user">Admin: Hoàng</div>
+</div>
+<div class="layout">
+    <div class="sidebar">
+        <h4>QUẢN LÝ (UI)</h4>
+        <a href="admin.html">Xử lý yêu cầu</a>
+        <a href="admin_time.html">Quản lý thời gian</a>
+        <a href="admin_employee.html" class="active">Quản lý nhân viên</a>
+        <a href="admin_report.html">Kết quả chấm công</a>
+        <h4>HỆ THỐNG</h4>
+        <a href="login.html">Đăng xuất</a>
+    </div>
+    <div class="main">
+        <div class="content">
+            <div class="content-header">Danh sách nhân viên</div>
+            <table class="history-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Mã NV</th>
+                        <th>Họ Tên</th>
+                        <th>Phòng ban</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    <tr>
+                        <td>NV001</td>
+                        <td>Nguyễn Văn Tuấn</td>
+                        <td>Kỹ thuật</td>
+                        <td class="ok">Đang làm việc</td>
+                        <td><button style="cursor:pointer">Sửa</button></td>
+                    </tr>
+                    <tr>
+                        <td>NV002</td>
+                        <td>Trần Thị Hoa</td>
+                        <td>Kế toán</td>
+                        <td style="color:red">Nghỉ phép</td>
+                        <td><button style="cursor:pointer">Sửa</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
