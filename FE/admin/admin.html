@@ -11,13 +11,7 @@
     <div class="user">Admin: Hoàng</div>
 </div>
 <div class="layout">
-    <div class="sidebar">
-        <h4>QUẢN LÝ (UI)</h4>
-        <a href="admin.html" class="active">Xử lý yêu cầu</a>
-        <a href="admin_time.html">Quản lý thời gian</a>
-        <a href="admin_employee.html">Quản lý nhân viên</a>
-        <a href="admin_report.html">Kết quả chấm công</a>
-    </div>
+    <div class="sidebar" id="sidebar-container"></div>
     <div class="main">
         <div class="cards">
             <div class="card">
@@ -55,5 +49,23 @@
         </div>
     </div>
 </div>
+    <script>
+    fetch('sidebar_admin.html')
+        .then(res => res.text())
+        .then(html => {
+            const container = document.getElementById('sidebar-container');
+            container.innerHTML = html;
+
+            const links = container.querySelectorAll('a');
+            const currentPage = window.location.pathname.split('/').pop();
+
+            links.forEach(link => {
+                if (link.getAttribute('href') === 'admin.html') {
+                    link.classList.add('active');
+                }
+            });
+        });
+</script>
 </body>
+
 </html>
