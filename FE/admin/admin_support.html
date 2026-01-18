@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Xử lý yêu cầu hỗ trợ</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 14px;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+    }
+
+    th {
+        background: #f1f5f9;
+        font-weight: 600;
+    }
+
+    .status-pending {
+        color: orange;
+        font-weight: 600;
+    }
+
+    .status-approved {
+        color: green;
+        font-weight: 600;
+    }
+
+    .status-rejected {
+        color: red;
+        font-weight: 600;
+    }
+
+    .action-btn {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 13px;
+    }
+
+    .approve {
+        background: #22c55e;
+    }
+
+    .reject {
+        background: #ef4444;
+        margin-left: 6px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h2>Hệ thống chấm công</h2>
+    <div class="user">Quản lý</div>
+</div>
+
+<div class="layout">
+
+    <div class="sidebar" id="sidebar-container"></div>
+
+    <div class="main">
+        <div class="content">
+            <div class="content-header">Xử lý yêu cầu hỗ trợ</div>
+            <div class="content-body">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã YC</th>
+                            <th>Nhân viên</th>
+                            <th>Ngày gửi</th>
+                            <th>Nội dung</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>05/01/2026</td>
+                            <td>Quên check-out</td>
+                            <td class="status status-pending">Chờ xử lý</td>
+                            <td>
+                                <button class="action-btn approve"
+                                    onclick="approve(this)">Duyệt</button>
+                                <button class="action-btn reject"
+                                    onclick="reject(this)">Từ chối</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#002</td>
+                            <td>Trần Thị B</td>
+                            <td>06/01/2026</td>
+                            <td>Check-in sai giờ</td>
+                            <td class="status status-pending">Chờ xử lý</td>
+                            <td>
+                                <button class="action-btn approve"
+                                    onclick="approve(this)">Duyệt</button>
+                                <button class="action-btn reject"
+                                    onclick="reject(this)">Từ chối</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+fetch('sidebar_admin.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('sidebar-container').innerHTML = html);
+
+function approve(btn) {
+    const statusCell = btn.closest('tr').querySelector('.status');
+    statusCell.textContent = 'Đã duyệt';
+    statusCell.className = 'status status-approved';
+}
+
+function reject(btn) {
+    const statusCell = btn.closest('tr').querySelector('.status');
+    statusCell.textContent = 'Đã từ chối';
+    statusCell.className = 'status status-rejected';
+}
+</script>
+
+</body>
+</html>
