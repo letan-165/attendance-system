@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface AttendanceRepository extends MongoRepository<Attendance, String> {
     Optional<Attendance> findByUserIdAndWorkDate(String userId, LocalDate workDate);
     List<Attendance> findByUserIdOrderByWorkDateDesc(String userId);
+    List<Attendance> findByUserId(String userId);
 }

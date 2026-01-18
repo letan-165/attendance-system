@@ -11,5 +11,5 @@ import java.util.List;
 public interface SupportRepository extends MongoRepository<Support, String> {
     List<Support> findByStatus(SupportStatus status);
     List<Support> findByAttendanceId(String attendanceId);
+    List<Support> findByAttendanceIdIn(List<String> attendanceIds);
 }
-

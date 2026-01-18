@@ -3,6 +3,7 @@ package cloud.project.attendance.controller;
 import cloud.project.attendance.common.ApiResponse;
 import cloud.project.attendance.common.enums.SupportStatus;
 import cloud.project.attendance.entity.Support;
+import cloud.project.attendance.service.AuthService;
 import cloud.project.attendance.service.SupportService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SupportController {
     SupportService supportService;
+    AuthService authService;
 
     @PostMapping
     ApiResponse<Support> submitSupport(
@@ -35,6 +37,14 @@ public class SupportController {
     ApiResponse<List<Support>> getByAttendance(@PathVariable String attendanceId) {
         return ApiResponse.<List<Support>>builder()
                 .result(supportService.getByAttendance(attendanceId))
+                .build();
+    }
+
+    @GetMapping("/user")
+    ApiResponse<List<Support>> getSupportsByUserId() {
+        String userId = authService.getUserIdFromToken();
+        return ApiResponse.<List<Support>>builder()
+                .result(supportService.getSupportsByUserId(userId))
                 .build();
     }
 

@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 public class Support {
     @Id
     String id;
-    String userId;
     String attendanceId;
     LocalDateTime time;
     String reason;

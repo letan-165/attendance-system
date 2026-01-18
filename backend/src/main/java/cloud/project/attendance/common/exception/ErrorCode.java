@@ -9,8 +9,9 @@ import org.springframework.http.HttpStatusCode;
 @AllArgsConstructor
 public enum ErrorCode {
 
+    SUPPORT_NO_EXISTS(3009,"Yêu cầu hỗ trợ không tồn tại", HttpStatus.BAD_REQUEST),
     WORK_SCHEDULE_NO_EXISTS(3008,"Thời gian làm việc không tồn tại", HttpStatus.BAD_REQUEST),
-    SUPPORT_NO_PENDING(3007,"Yêu cầu hỗ trợ đã được xử lý", HttpStatus.BAD_REQUEST),
+    SUPPORT_PENDING(3007,"Yêu cầu hỗ trợ đã được xử lý", HttpStatus.BAD_REQUEST),
     ATTENDANCE_NO_EXISTS(3006,"Dữ liệu chấm công không tồn tại", HttpStatus.BAD_REQUEST),
     NOT_CHECKED_IN(3005,"Người dùng chưa check-in", HttpStatus.BAD_REQUEST),
     ALREADY_CHECKED_OUT(3004,"Đã check-out trước đó", HttpStatus.BAD_REQUEST),

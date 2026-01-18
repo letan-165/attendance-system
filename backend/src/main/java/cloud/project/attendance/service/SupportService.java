@@ -41,16 +41,28 @@ public class SupportService {
         return supportRepository.findByAttendanceId(attendanceId);
     }
 
+    public List<Support> getSupportsByUserId(String userId) {
+        List<Attendance> attendances =
+                attendanceRepository.findByUserId(userId);
+
+        List<String> attendanceIds = attendances.stream()
+                .map(Attendance::getId)
+                .toList();
+
+        return supportRepository.findByAttendanceIdIn(attendanceIds);
+    }
+
+
     public List<Support> getPendingRequests() {
         return supportRepository.findByStatus(SupportStatus.PENDING);
     }
 
     public Support handleRequest(String supportId, SupportStatus status) {
         Support support = supportRepository.findById(supportId)
-                .orElseThrow(() -> new AppException(ErrorCode.SUPPORT_INVALID));
+                .orElseThrow(() -> new AppException(ErrorCode.SUPPORT_NO_EXISTS));
 
-        if (status != SupportStatus.PENDING)
-            throw new AppException(ErrorCode.SUPPORT_NO_PENDING);
+        if (status == SupportStatus.PENDING)
+            throw new AppException(ErrorCode.SUPPORT_PENDING);
 
         support.setStatus(status);
 
