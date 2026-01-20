@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản lý nhân viên</title>
+
+    <link rel="stylesheet" href="../layout/style.css" />
+    <link rel="stylesheet" href="../layout/table.css" />
+  </head>
+
+  <body>
+    <div id="header-container"></div>
+
+    <div class="layout">
+      <div class="sidebar" id="sidebar-container-admin"></div>
+
+      <div class="main">
+        <div class="content">
+          <h3>Danh sách nhân viên</h3>
+
+          <div class="content-body">
+            <table class="request-table">
+              <thead>
+                <tr>
+                  <th>Mã NV</th>
+                  <th>Họ tên</th>
+                  <th>Phòng ban</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>NV001</td>
+                  <td>Nguyễn Hoàng Tuấn</td>
+                  <td>Kỹ thuật</td>
+                  <td class="status-approved">Đang làm việc</td>
+                  <td>
+                    <button>Sửa</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>NV002</td>
+                  <td>Trần Thị Hoa</td>
+                  <td>Kế toán</td>
+                  <td class="status-rejected">Nghỉ phép</td>
+                  <td>
+                    <button>Sửa</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../layout/layout.js"></script>
+  </body>
+</html>

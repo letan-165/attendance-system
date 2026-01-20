@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lịch sử chấm công</title>
+
+    <link rel="stylesheet" href="../layout/style.css" />
+    <link rel="stylesheet" href="../layout/table.css" />
+  </head>
+
+  <body>
+    <div id="header-container"></div>
+
+    <div class="layout">
+      <div class="sidebar" id="sidebar-container"></div>
+
+      <div class="main">
+        <div class="content">
+          <h3>Lịch sử chấm công</h3>
+
+          <div class="content-body">
+            <table class="request-table">
+              <thead>
+                <tr>
+                  <th>Ngày</th>
+                  <th>Check-in</th>
+                  <th>Check-out</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="data-table">
+                <!-- JS render data ở đây -->
+              </tbody>
+            </table>
+
+            <div class="pagination">
+              <button class="page-btn disabled">«</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">»</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../layout/layout.js"></script>
+    <script src="../api/data.js"></script>
+  </body>
+</html>

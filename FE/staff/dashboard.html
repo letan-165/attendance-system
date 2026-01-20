@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hệ thống chấm công</title>
+    <link rel="stylesheet" href="../layout/style.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <div class="layout">
+      <div class="sidebar" id="sidebar-container"></div>
+
+      <div class="main">
+        <div class="actions">
+          <button class="btn primary">✔ Check-in</button>
+          <button class="btn secondary">⏱ Check-out</button>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Hôm nay</h3>
+            <p><b>Check-in:</b> 06:59 SA</p>
+            <p><b>Check-out:</b> 04:30 CH</p>
+          </div>
+
+          <div class="card">
+            <h3>Thời gian làm</h3>
+            <p class="ok"><b>Bắt đầu:</b> 07:00 SA</p>
+            <p class="ok"><b>Kết thúc:</b> 05:00 CH</p>
+          </div>
+
+          <div class="card">
+            <h3>Server</h3>
+            <p><b>Máy chủ:</b> backend-02</p>
+            <p><b>Trạng thái:</b> Ổn định</p>
+          </div>
+        </div>
+
+        <div class="content">
+          <h3>Kết quả trạng thái chấm công</h3>
+          <div class="content-body">
+            <p><b>Check-in:</b> Đúng giờ</p>
+            <p><b>Check-out:</b> Quá sớm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../layout/layout.js"></script>
+  </body>
+</html>

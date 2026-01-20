@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản lý thời gian</title>
+
+    <link rel="stylesheet" href="../layout/style.css" />
+    <link rel="stylesheet" href="../layout/table.css" />
+  </head>
+
+  <body>
+    <div id="header-container"></div>
+
+    <div class="layout">
+      <div class="sidebar" id="sidebar-container-admin"></div>
+
+      <div class="main">
+        <div class="content">
+          <h3>Điều chỉnh giờ công (Log)</h3>
+
+          <div class="content-body">
+            <!-- Tìm kiếm -->
+            <div class="search-box">
+              <label>
+                Tìm nhân viên:
+                <input type="text" placeholder="Nhập tên hoặc mã NV..." />
+              </label>
+            </div>
+
+            <!-- Table -->
+            <table class="request-table">
+              <thead>
+                <tr>
+                  <th>Ngày</th>
+                  <th>Nhân viên</th>
+                  <th>Giờ vào (Gốc)</th>
+                  <th>Giờ ra (Gốc)</th>
+                  <th>Cập nhật</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>13/01/2026</td>
+                  <td>Nguyễn Hoàng Tuấn</td>
+                  <td>08:05</td>
+                  <td>--:--</td>
+                  <td>
+                    <button>Chỉnh sửa</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../layout/layout.js"></script>
+  </body>
+</html>

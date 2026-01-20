@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial;
+  background: #f4f7fb;
+}
+
+.header {
+  height: 70px;
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: white;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+.sidebar {
+  width: 260px;
+  background: #0f172a;
+  color: #cbd5f5;
+  padding: 20px;
+}
+
+.sidebar h4 {
+  margin: 20px 0 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  color: #cbd5f5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #1e293b;
+  color: white;
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.secondary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.content {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.sidebar a.logout {
+  color: red;
+  font-weight: bold;
+}
