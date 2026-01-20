@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.Instant;
+
 
 @Builder
 @Data
@@ -14,6 +16,8 @@ import lombok.experimental.FieldDefaults;
 public class ApiResponse<T> {
     @Builder.Default
     int code = 1000;
+    @Builder.Default
+    String serverName = System.getenv().getOrDefault("HOSTNAME", "local");
     String message;
     T result;
 }

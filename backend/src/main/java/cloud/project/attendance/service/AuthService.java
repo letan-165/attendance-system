@@ -61,6 +61,7 @@ public class AuthService {
         return LoginResponse.builder()
                 .userID(user.getId())
                 .name(user.getFullName())
+                .role(user.getRole().name())
                 .token(generate(user))
                 .build();
     }
