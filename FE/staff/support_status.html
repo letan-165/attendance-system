@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Trạng thái yêu cầu</title>
+
     <link rel="stylesheet" href="../layout/style.css" />
     <link rel="stylesheet" href="../layout/table.css" />
   </head>
+
   <body>
     <div id="header-container"></div>
 
@@ -20,23 +22,20 @@
             <thead>
               <tr>
                 <th>Mã</th>
-                <th>Lí do</th>
+                <th>Lý do</th>
                 <th>Ngày gửi</th>
                 <th>Trạng thái</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>001</td>
-                <td>Quên check-in</td>
-                <td>12/01/2026</td>
-                <td class="status-processing">Đang xử lý</td>
-              </tr>
+            <tbody id="support-table">
+              <!-- JS render -->
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
     <script src="../layout/layout.js"></script>
+    <script type="module" src="./js/support_status.js"></script>
   </body>
 </html>
