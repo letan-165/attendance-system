@@ -28,10 +28,17 @@ public class UserRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         List<UserSeed> users = List.of(
                 new UserSeed("tan", "Lê Minh Tân", UserRole.ADMIN),
+                new UserSeed("phu", "Trần Hoàng Phú", UserRole.MANAGER),
                 new UserSeed("dung", "Phan Quốc Dũng", UserRole.STAFF),
-                new UserSeed("phu", "Trần Hoàng Phú", UserRole.STAFF),
                 new UserSeed("cong", "Huỳnh Ngọc Công", UserRole.STAFF),
-                new UserSeed("tuan", "Nguyễn Hoàng Tuấn", UserRole.STAFF)
+                new UserSeed("tuan", "Nguyễn Hoàng Tuấn", UserRole.STAFF),
+
+                new UserSeed("staff1", "Nguyễn staff1", UserRole.STAFF),
+                new UserSeed("staff2", "Nguyễn staff2", UserRole.STAFF),
+                new UserSeed("staff3", "Nguyễn staff3", UserRole.STAFF),
+                new UserSeed("staff4", "Nguyễn staff4", UserRole.STAFF),
+                new UserSeed("staff5", "Nguyễn staff5", UserRole.STAFF)
+
         );
 
         users.stream()

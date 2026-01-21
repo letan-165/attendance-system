@@ -1,5 +1,7 @@
 package cloud.project.attendance.service;
 
+import cloud.project.attendance.common.enums.UserRole;
+import cloud.project.attendance.common.enums.UserStatus;
 import cloud.project.attendance.common.exception.AppException;
 import cloud.project.attendance.common.exception.ErrorCode;
 import cloud.project.attendance.dto.request.LoginRequest;
@@ -55,8 +57,8 @@ public class AuthService {
 
         boolean check = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
-        if(!check)
-            throw new AppException(ErrorCode.PASSWORD_INVALID);
+        if (UserStatus.BLOCKED.equals(user.getStatus()) || !check)
+            throw new AppException(ErrorCode.LOGIN_INVALID);
 
         return LoginResponse.builder()
                 .userID(user.getId())
