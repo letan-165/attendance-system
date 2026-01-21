@@ -3,6 +3,7 @@ package cloud.project.attendance.service;
 import cloud.project.attendance.common.enums.AttendanceStatus;
 import cloud.project.attendance.common.exception.AppException;
 import cloud.project.attendance.common.exception.ErrorCode;
+import cloud.project.attendance.dto.response.StaticAttendanceResponse;
 import cloud.project.attendance.entity.Attendance;
 import cloud.project.attendance.entity.WorkSchedule;
 import cloud.project.attendance.repository.AttendanceRepository;
@@ -13,9 +14,11 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +76,12 @@ public class AttendanceService {
         if (now.toLocalTime().isBefore(schedule.getEndTime()))
             attendance.getStatus().add(AttendanceStatus.EARLY_LEAVE);
 
+        long minutesWorked = Duration
+                .between(attendance.getCheckInTime(), now)
+                .toMinutes();
+
+        attendance.setTotal(minutesWorked);
+
         return attendanceRepository.save(attendance);
     }
 
@@ -85,4 +94,28 @@ public class AttendanceService {
     public List<Attendance> getHistory(String userId) {
         return attendanceRepository.findByUserIdOrderByWorkDateDesc(userId);
     }
+
+    public StaticAttendanceResponse getStatisticAttendance() {
+        List<Attendance> attendances = attendanceRepository.findAll();
+        return StaticAttendanceResponse.builder()
+                .attendances(attendances)
+                .onTimeCount(attendances.stream()
+                        .filter(a -> a.getStatus().contains(AttendanceStatus.ON_TIME))
+                        .count())
+                .lateCount(attendances.stream()
+                        .filter(a -> a.getStatus().contains(AttendanceStatus.LATE))
+                        .count())
+                .earlyLeaveCount(attendances.stream()
+                        .filter(a -> a.getStatus().contains(AttendanceStatus.EARLY_LEAVE))
+                        .count())
+                .absentCount(attendances.stream()
+                        .filter(a -> a.getStatus().contains(AttendanceStatus.ABSENT))
+                        .count())
+                .totalWorking(attendances.stream()
+                        .map(Attendance::getTotal)
+                        .mapToLong(Long::longValue)
+                        .sum())
+                .build();
+    }
+
 }

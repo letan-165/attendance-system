@@ -18,50 +18,27 @@
         <div class="content">
           <h3>Xử lý yêu cầu hỗ trợ</h3>
 
-          <div class="content-body">
-            <table class="request-table">
-              <thead>
-                <tr>
-                  <th>Mã YC</th>
-                  <th>Nhân viên</th>
-                  <th>Ngày gửi</th>
-                  <th>Nội dung</th>
-                  <th>Trạng thái</th>
-                  <th>Hành động</th>
-                </tr>
-              </thead>
+          <table class="request-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Mã chấm công</th>
+                <th>Ngày gửi</th>
+                <th>Lý do</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                <tr>
-                  <td>#001</td>
-                  <td>Nguyễn Văn A</td>
-                  <td>05/01/2026</td>
-                  <td>Quên check-out</td>
-                  <td class="status-processing">Chờ xử lý</td>
-                  <td>
-                    <button onclick="approve(this)">Duyệt</button>
-                    <button onclick="reject(this)">Từ chối</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>#002</td>
-                  <td>Trần Thị B</td>
-                  <td>06/01/2026</td>
-                  <td>Check-in sai giờ</td>
-                  <td class="status-processing">Chờ xử lý</td>
-                  <td>
-                    <button onclick="approve(this)">Duyệt</button>
-                    <button onclick="reject(this)">Từ chối</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <tbody id="support-table">
+              <!-- JS render -->
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
     <script src="../layout/layout.js"></script>
+    <script type="module" src="./js/support.js"></script>
   </body>
 </html>

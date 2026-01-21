@@ -1,6 +1,7 @@
 package cloud.project.attendance.controller;
 
 import cloud.project.attendance.common.ApiResponse;
+import cloud.project.attendance.dto.response.StaticAttendanceResponse;
 import cloud.project.attendance.entity.Attendance;
 import cloud.project.attendance.service.AttendanceService;
 import cloud.project.attendance.service.AuthService;
@@ -54,6 +55,13 @@ public class AttendanceController {
         String userId = authService.getUserIdFromToken();
         return ApiResponse.<List<Attendance>>builder()
                 .result(attendanceService.getHistory(userId))
+                .build();
+    }
+
+    @GetMapping("/static")
+    ApiResponse<StaticAttendanceResponse> getStatisticAttendance() {
+        return ApiResponse.<StaticAttendanceResponse>builder()
+                .result(attendanceService.getStatisticAttendance())
                 .build();
     }
 

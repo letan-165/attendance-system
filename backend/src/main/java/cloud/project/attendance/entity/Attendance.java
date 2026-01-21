@@ -26,6 +26,7 @@ public class Attendance {
     LocalDate workDate;
     LocalDateTime checkInTime;
     LocalDateTime checkOutTime;
+    long total;
 
     @Builder.Default
     List<AttendanceStatus> status = new ArrayList<>();
