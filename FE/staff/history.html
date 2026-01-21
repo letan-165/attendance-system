@@ -22,30 +22,24 @@
             <table class="request-table">
               <thead>
                 <tr>
+                  <th>Mã</th>
                   <th>Ngày</th>
                   <th>Check-in</th>
                   <th>Check-out</th>
-                  <th>Thao tác</th>
+                  <th>Trạng thái</th>
+                  <th>Hỗ trợ</th>
                 </tr>
               </thead>
               <tbody id="data-table">
                 <!-- JS render data ở đây -->
               </tbody>
             </table>
-
-            <div class="pagination">
-              <button class="page-btn disabled">«</button>
-              <button class="page-btn active">1</button>
-              <button class="page-btn">2</button>
-              <button class="page-btn">3</button>
-              <button class="page-btn">»</button>
-            </div>
           </div>
         </div>
       </div>
     </div>
 
     <script src="../layout/layout.js"></script>
-    <script src="../api/data.js"></script>
+    <script type="module" src="./js/history.js"></script>
   </body>
 </html>

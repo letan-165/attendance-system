@@ -38,21 +38,12 @@
       <div class="login-box">
         <h2>Đăng nhập</h2>
 
-        <input type="text" placeholder="Tên đăng nhập" />
-        <input type="password" placeholder="Mật khẩu" />
+        <input id="username" type="text" placeholder="Tên đăng nhập" />
+        <input id="password" type="password" placeholder="Mật khẩu" />
 
-        <button
-          class="btn primary btn-login"
-          onclick="location.href = './staff/dashboard.html'"
-        >
-          Nhân viên
-        </button>
-        <button
-          class="btn primary btn-login"
-          onclick="location.href = './manager/support.html'"
-        >
-          Quản lí
-        </button>
+        <button id="btn-staff" class="btn primary btn-login">Đăng nhập</button>
+
+        <script type="module" src="index.js"></script>
       </div>
     </div>
   </body>

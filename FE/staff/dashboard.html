@@ -3,8 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hệ thống chấm công</title>
+
     <link rel="stylesheet" href="../layout/style.css" />
+
+    <style>
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .ok {
+        color: green;
+      }
+    </style>
   </head>
+
   <body>
     <div id="header-container"></div>
 
@@ -13,40 +41,41 @@
 
       <div class="main">
         <div class="actions">
-          <button class="btn primary">✔ Check-in</button>
-          <button class="btn secondary">⏱ Check-out</button>
+          <button id="btn-checkin" class="btn primary">✔ Check-in</button>
+          <button id="btn-checkout" class="btn secondary">⏱ Check-out</button>
         </div>
 
         <div class="cards">
           <div class="card">
             <h3>Hôm nay</h3>
-            <p><b>Check-in:</b> 06:59 SA</p>
-            <p><b>Check-out:</b> 04:30 CH</p>
+            <p><b>Check-in:</b> <span id="check-in">--</span></p>
+            <p><b>Check-out:</b> <span id="check-out">--</span></p>
           </div>
 
           <div class="card">
             <h3>Thời gian làm</h3>
-            <p class="ok"><b>Bắt đầu:</b> 07:00 SA</p>
-            <p class="ok"><b>Kết thúc:</b> 05:00 CH</p>
+            <p><b>Bắt đầu:</b> <span id="start-time">--</span></p>
+            <p><b>Kết thúc:</b> <span id="end-time">--</span></p>
           </div>
 
           <div class="card">
             <h3>Server</h3>
-            <p><b>Máy chủ:</b> backend-02</p>
-            <p><b>Trạng thái:</b> Ổn định</p>
+            <p><b>Máy chủ:</b> <span id="server-name">--</span></p>
+            <p><b>Trạng thái:</b> <span id="server-status">--</span></p>
           </div>
         </div>
 
         <div class="content">
           <h3>Kết quả trạng thái chấm công</h3>
           <div class="content-body">
-            <p><b>Check-in:</b> Đúng giờ</p>
-            <p><b>Check-out:</b> Quá sớm</p>
+            <p><b>Trạng thái:</b> <span id="attendance-status">--</span></p>
+            <p><b>Thời gian làm việc:</b> <span id="attendance-time">--</span></p>
           </div>
         </div>
       </div>
     </div>
 
     <script src="../layout/layout.js"></script>
+    <script type="module" src="./js/dashboard.js"></script>
   </body>
 </html>

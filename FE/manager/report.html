@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <title>Kết quả chấm công</title>
+    <title>Báo cáo chấm công</title>
 
     <link rel="stylesheet" href="../layout/style.css" />
     <link rel="stylesheet" href="../layout/table.css" />
@@ -15,46 +15,56 @@
       <div class="sidebar" id="sidebar-container-admin"></div>
 
       <div class="main">
-        <!-- Cards -->
+        <h3>Báo cáo kết quả chấm công</h3>
+
+        <!-- Cards thống kê -->
         <div class="cards">
           <div class="card">
             <h3>Đi muộn</h3>
-            <p class="status-rejected card-number">03</p>
+            <p class="status-rejected card-number" id="late-count">--</p>
           </div>
 
           <div class="card">
             <h3>Đúng giờ</h3>
-            <p class="status-approved card-number">12</p>
+            <p class="status-approved card-number" id="ontime-count">--</p>
           </div>
 
           <div class="card">
-            <h3>Tổng công tháng</h3>
-            <p class="card-number">220 giờ</p>
+            <h3>Về sớm</h3>
+            <p class="status-warning card-number" id="early-leave-count">--</p>
+          </div>
+
+          <div class="card">
+            <h3>Vắng mặt</h3>
+            <p class="status-rejected card-number" id="absent-count">--</p>
+          </div>
+
+          <div class="card">
+            <h3>Tổng giờ làm</h3>
+            <p class="card-number"><span id="total-working">--</span> Phút</p>
           </div>
         </div>
 
         <!-- Table -->
         <div class="content">
-          <h3>Bảng tổng hợp công tháng 01/2026</h3>
+          <h3>Chi tiết chấm công</h3>
 
           <div class="content-body">
             <table class="request-table">
               <thead>
                 <tr>
+                  <th>Mã công</th>
                   <th>Nhân viên</th>
-                  <th>Số ngày công</th>
-                  <th>Số giờ làm</th>
-                  <th>Đi muộn (lần)</th>
+                  <th>Ngày làm</th>
+                  <th>Giờ vào</th>
+                  <th>Giờ ra</th>
+                  <th>Số giờ</th>
+                  <th>Trạng thái</th>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>Nguyễn Hoàng Tuấn</td>
-                  <td>10/10</td>
-                  <td>80h</td>
-                  <td>0</td>
-                </tr>
+              <tbody id="attendance-table-body">
+                <!-- JS render -->
               </tbody>
             </table>
           </div>
@@ -62,6 +72,7 @@
       </div>
     </div>
 
+    <script type="module" src="./js/report.js"></script>
     <script src="../layout/layout.js"></script>
   </body>
 </html>

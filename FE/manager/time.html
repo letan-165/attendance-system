@@ -16,46 +16,48 @@
 
       <div class="main">
         <div class="content">
-          <h3>Điều chỉnh giờ công (Log)</h3>
+          <h3>Lịch sử giờ công</h3>
+          <button class="btn primary" onclick="openDialog()">Tùy chỉnh</button>
 
           <div class="content-body">
-            <!-- Tìm kiếm -->
-            <div class="search-box">
-              <label>
-                Tìm nhân viên:
-                <input type="text" placeholder="Nhập tên hoặc mã NV..." />
-              </label>
-            </div>
-
-            <!-- Table -->
             <table class="request-table">
               <thead>
                 <tr>
                   <th>Ngày</th>
-                  <th>Nhân viên</th>
-                  <th>Giờ vào (Gốc)</th>
-                  <th>Giờ ra (Gốc)</th>
-                  <th>Cập nhật</th>
+                  <th>Giờ bắt đầu</th>
+                  <th>Giờ kết thúc</th>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>13/01/2026</td>
-                  <td>Nguyễn Hoàng Tuấn</td>
-                  <td>08:05</td>
-                  <td>--:--</td>
-                  <td>
-                    <button>Chỉnh sửa</button>
-                  </td>
-                </tr>
+              <tbody id="work-table">
+                <!-- JS render -->
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+    <!-- Dialog -->
+    <div id="work-dialog" class="dialog-overlay">
+      <div class="dialog-box">
+        <h4>Tùy chỉnh giờ công</h4>
+
+        <label>Giờ bắt đầu:</label>
+        <input id="startTime" type="time" />
+
+        <label>Giờ kết thúc:</label>
+        <input id="endTime" type="time" />
+
+        <div class="dialog-actions">
+          <button class="btn secondary" onclick="closeDialog()">Hủy</button>
+          <button class="btn primary" onclick="submitWorkSchedule()">
+            Lưu
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script src="../layout/layout.js"></script>
+    <script type="module" src="./js/time.js"></script>
   </body>
 </html>

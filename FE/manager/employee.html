@@ -22,34 +22,18 @@
             <table class="request-table">
               <thead>
                 <tr>
-                  <th>Mã NV</th>
+                  <th>Mã</th>
+                  <th>Tài khoản</th>
                   <th>Họ tên</th>
-                  <th>Phòng ban</th>
+                  <th>Email</th>
+                  <th>Ban</th>
                   <th>Trạng thái</th>
                   <th>Thao tác</th>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>NV001</td>
-                  <td>Nguyễn Hoàng Tuấn</td>
-                  <td>Kỹ thuật</td>
-                  <td class="status-approved">Đang làm việc</td>
-                  <td>
-                    <button>Sửa</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>NV002</td>
-                  <td>Trần Thị Hoa</td>
-                  <td>Kế toán</td>
-                  <td class="status-rejected">Nghỉ phép</td>
-                  <td>
-                    <button>Sửa</button>
-                  </td>
-                </tr>
+              <tbody id="user-table">
+                <!-- JS render -->
               </tbody>
             </table>
           </div>
@@ -58,5 +42,6 @@
     </div>
 
     <script src="../layout/layout.js"></script>
+    <script type="module" src="./js/employee.js"></script>
   </body>
 </html>

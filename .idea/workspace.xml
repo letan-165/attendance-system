@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aa820c87-2c2e-4b6e-8681-f995c4b2a15b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/api/attendance.api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/api/auth.api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/api/http.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/api/support.api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/api/user.api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/api/workSchedule.api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/layout/format.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/manager/js/employee.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/manager/js/report.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/manager/js/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/manager/js/time.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/staff/js/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/staff/js/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/staff/js/request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FE/staff/js/support_status.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/api/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FE/staff/request_status.html" beforeDir="false" afterPath="$PROJECT_DIR$/FE/staff/support_status.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/common/enums/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/common/enums/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/common/enums/UserStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/common/enums/UserStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/config/Security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/config/Security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/config/Security/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/cloud/project/attendance/service/AuthService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;letan-165&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/letan-165/attendance-system&quot;,
+    &quot;accountId&quot;: &quot;4b820d2b-0242-428d-b8b8-780e1018dde0&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="38YongVhiJmd6VCuORviOBNBjb8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="attendance-system" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="attendance-system" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa820c87-2c2e-4b6e-8681-f995c4b2a15b" name="Changes" comment="" />
+      <created>1768986033689</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768986033689</updated>
+    </task>
+    <servers />
+  </component>
+</project>

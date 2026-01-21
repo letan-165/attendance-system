@@ -9,8 +9,15 @@ function loadHeader() {
     .then((res) => res.text())
     .then((html) => {
       const header = document.getElementById("header-container");
-      if (header) {
-        header.innerHTML = html;
+      if (!header) return;
+
+      header.innerHTML = html;
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userNameEl = document.getElementById("user-name");
+
+      if (userNameEl) {
+        userNameEl.innerText = user?.name || "Guest";
       }
     });
 }
