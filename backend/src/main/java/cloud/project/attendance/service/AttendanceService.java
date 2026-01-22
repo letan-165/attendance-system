@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,10 +49,10 @@ public class AttendanceService {
         if (attendance.getCheckInTime() != null)
             throw new AppException(ErrorCode.ALREADY_CHECKED_IN);
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalTime now = LocalTime.now();
         attendance.setCheckInTime(now);
 
-        AttendanceStatus status = now.toLocalTime().isAfter(schedule.getStartTime())
+        AttendanceStatus status = now.isAfter(schedule.getStartTime())
                 ? AttendanceStatus.LATE
                 : AttendanceStatus.ON_TIME;
 
@@ -70,10 +71,10 @@ public class AttendanceService {
         if (attendance.getCheckOutTime() != null)
             throw new AppException(ErrorCode.ALREADY_CHECKED_OUT);
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalTime now = LocalTime.now();
         attendance.setCheckOutTime(now);
 
-        if (now.toLocalTime().isBefore(schedule.getEndTime()))
+        if (now.isBefore(schedule.getEndTime()))
             attendance.getStatus().add(AttendanceStatus.EARLY_LEAVE);
 
         long minutesWorked = Duration

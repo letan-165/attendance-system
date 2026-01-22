@@ -16,8 +16,9 @@ import java.time.Instant;
 public class ApiResponse<T> {
     @Builder.Default
     int code = 1000;
+
     @Builder.Default
-    String serverName = System.getenv().getOrDefault("HOSTNAME", "local");
+    String serverName = System.getenv().getOrDefault("HOSTNAME", "LOCAL");
     String message;
     T result;
 }

@@ -1,6 +1,5 @@
 package cloud.project.attendance.entity;
 
-import cloud.project.attendance.common.enums.ActionLogType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,8 +18,11 @@ public class ActivityLog {
     @Id
      String id;
      String userId;
-     ActionLogType type;
-     String description;
+     String action;
+     String endpoint;
+
+    @Builder.Default
+    String serverName = System.getenv().getOrDefault("HOSTNAME", "LOCAL");
 
      @CreatedDate
      LocalDateTime createdAt;

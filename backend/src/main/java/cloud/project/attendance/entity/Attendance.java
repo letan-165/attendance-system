@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class Attendance {
     String userId;
 
     LocalDate workDate;
-    LocalDateTime checkInTime;
-    LocalDateTime checkOutTime;
+    LocalTime checkInTime;
+    LocalTime checkOutTime;
     long total;
 
     @Builder.Default
