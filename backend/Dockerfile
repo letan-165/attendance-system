@@ -4,9 +4,11 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-RUN mvn package install
+RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:21.0.4
+
+ENV TZ=Asia/Ho_Chi_Minh
 
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
