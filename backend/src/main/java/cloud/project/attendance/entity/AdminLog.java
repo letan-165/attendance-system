@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ActivityLog {
+public class AdminLog {
     @Id
     String id;
-    String userId;
     String action;
     String endpoint;
 

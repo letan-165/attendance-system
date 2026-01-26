@@ -43,7 +43,7 @@ public class AttendanceController {
 
 
     @GetMapping("/today")
-    ApiResponse<Attendance> getToday() {
+    ApiResponse<Attendance> today() {
         String userId = authService.getUserIdFromToken();
         return ApiResponse.<Attendance>builder()
                 .result(attendanceService.getToday(userId))
@@ -59,7 +59,7 @@ public class AttendanceController {
     }
 
     @GetMapping("/static")
-    ApiResponse<StaticAttendanceResponse> getStatisticAttendance() {
+    ApiResponse<StaticAttendanceResponse> statics() {
         return ApiResponse.<StaticAttendanceResponse>builder()
                 .result(attendanceService.getStatisticAttendance())
                 .build();

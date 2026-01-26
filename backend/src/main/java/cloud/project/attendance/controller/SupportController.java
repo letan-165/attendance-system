@@ -23,7 +23,7 @@ public class SupportController {
     AuthService authService;
 
     @PostMapping
-    ApiResponse<Support> submitSupport(
+    ApiResponse<Support> submit(
             @RequestParam String attendanceId,
             @RequestParam String reason
     ) {
@@ -41,7 +41,7 @@ public class SupportController {
     }
 
     @GetMapping("/user")
-    ApiResponse<List<Support>> getSupportsByUserId() {
+    ApiResponse<List<Support>> getByUser() {
         String userId = authService.getUserIdFromToken();
         return ApiResponse.<List<Support>>builder()
                 .result(supportService.getSupportsByUserId(userId))
@@ -49,14 +49,14 @@ public class SupportController {
     }
 
     @GetMapping("/pending")
-    ApiResponse<List<Support>> getPending() {
+    ApiResponse<List<Support>> getByPending() {
         return ApiResponse.<List<Support>>builder()
                 .result(supportService.getPendingRequests())
                 .build();
     }
 
     @PutMapping("/{id}")
-    ApiResponse<Support> handleRequest(
+    ApiResponse<Support> handle(
             @PathVariable String id,
             @RequestParam SupportStatus status
     ) {
